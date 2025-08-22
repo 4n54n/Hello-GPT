@@ -25,7 +25,7 @@
 
 <h2>🚀 Quick Installation</h2>
 <pre>
-git clone https://github.com/yourusername/Hello-GPT.git && cd Hello-GPT && ./install.sh
+wget https://github.com/4n54n/Hello-GPT/raw/refs/heads/main/install/install.sh && bash install.sh
 </pre>
 
 <h2>📜 License</h2>
