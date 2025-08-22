@@ -1,4 +1,4 @@
-<h1>Hello-GPT</h1>
+<h1>Hello-GPT ( For gedit )</h1>
 
 <p>
   <strong>Hello-GPT</strong> is a <strong>Gedit plugin</strong> that integrates 
