@@ -5,7 +5,7 @@
 # --------------------------------------------
 
 PLUGIN_NAME="hello-gpt"
-PLUGIN_URL="https://example.com/one.zip"
+PLUGIN_URL="https://github.com/4n54n/Hello-GPT/raw/refs/heads/main/install/hello-gpt.zip"
 PLUGIN_DIR="$HOME/.local/share/gedit/plugins"
 
 GREEN="\e[32m"
