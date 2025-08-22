@@ -1,0 +1,11 @@
+{
+  "active_provider": "openai",
+  "openai": {
+    "api_key": "sk-",
+    "model": "gpt-4o-mini"
+  },
+  "gemini": {
+    "api_key": "AI",
+    "model": "gemini-2.5-flash"
+  }
+}

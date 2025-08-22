@@ -1,0 +1,10 @@
+[Plugin]
+Loader=python3
+Module=hello-gpt
+IAge=3
+Name=Hello GPT
+Description=GPT integration plugin | CS@CUSAT
+Version=1.0
+Authors=Ansan Mathew
+Copyright=2025, CS@CUSAT
+Website=https://_.com
