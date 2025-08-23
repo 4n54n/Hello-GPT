@@ -3,9 +3,8 @@
 https://github.com/user-attachments/assets/0aeb3d7e-7d0a-46ac-a294-7895906d097c
 <p>
   <strong>Hello-GPT</strong> is a <strong>Gedit plugin</strong> that integrates 
-  <strong>OpenAI</strong> and <strong>Google Gemini</strong> APIs directly into your text editor. 
-  It’s designed for developers and writers who want instant AI assistance without anyone noticing —
-  the plugin works only via secret keyboard shortcuts.
+  <strong>OpenAI</strong> and <strong>Google Gemini</strong> APIs directly into your gedit text editor. 
+  It’s designed for developers, students and writers who want instant AI assistance with a simple keyboard shortcut.
 </p>
 
 <ul>
@@ -28,6 +27,3 @@ https://github.com/user-attachments/assets/0aeb3d7e-7d0a-46ac-a294-7895906d097c
 <pre>
 wget https://github.com/4n54n/Hello-GPT/raw/refs/heads/main/install/install.sh && bash install.sh
 </pre>
-
-<h2>📜 License</h2>
-<p>This project is licensed under the <a href="LICENSE">MIT License</a>.</p>
