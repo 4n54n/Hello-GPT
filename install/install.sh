@@ -32,10 +32,22 @@ fi
 
 TMP_ZIP=$(mktemp /tmp/${PLUGIN_NAME}.XXXX.zip)
 echo -e "${BLUE}Downloading ${PLUGIN_NAME} plugin...${RESET}"
-if ! curl -L -o "$TMP_ZIP" "$PLUGIN_URL"; then
-    echo -e "${YELLOW}Failed to download plugin. Please check the URL.${RESET}"
+
+if command -v wget >/dev/null 2>&1; then
+    if ! wget -O "$TMP_ZIP" "$PLUGIN_URL"; then
+        echo -e "${YELLOW}Failed to download plugin with wget. Please check the URL.${RESET}"
+        exit 1
+    fi
+elif command -v curl >/dev/null 2>&1; then
+    if ! curl -L -o "$TMP_ZIP" "$PLUGIN_URL"; then
+        echo -e "${YELLOW}Failed to download plugin with curl. Please check the URL.${RESET}"
+        exit 1
+    fi
+else
+    echo -e "${YELLOW}Neither wget nor curl is installed. Please install one of them and retry.${RESET}"
     exit 1
 fi
+
 echo -e "${GREEN}✔ Downloaded plugin${RESET}"
 
 echo -e "${BLUE}Installing plugin...${RESET}"
