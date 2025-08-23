@@ -42,19 +42,23 @@ unzip -o "$TMP_ZIP" -d "$PLUGIN_DIR" &> /dev/null
 rm "$TMP_ZIP"
 echo -e "${GREEN}✔ Plugin installed to $PLUGIN_DIR${RESET}"
 
+# 5. Activate plugin
 echo -e "${BLUE}Activating plugin...${RESET}"
 current=$(gsettings get org.gnome.gedit.plugins active-plugins)
-if [[ $current == *"$PLUGIN_NAME"* ]]; then
+
+if echo "$current" | grep -q "'$PLUGIN_NAME'"; then
     echo -e "${GREEN}✔ Plugin already activated${RESET}"
 else
-    current="${current%\']}"
-    current="${current#\[\'}}"
-    new_plugins="[$current, '$PLUGIN_NAME']"
-    gsettings set org.gnome.gedit.plugins active-plugins "$new_plugins"
+    if [ "$current" = "@as []" ] || [ "$current" = "[]" ]; then
+        new="['$PLUGIN_NAME']"
+    else
+        # Insert before the final ]
+        new="${current%]*}, '$PLUGIN_NAME']"
+    fi
+    gsettings set org.gnome.gedit.plugins active-plugins "$new"
     echo -e "${GREEN}✔ Plugin activated${RESET}"
 fi
 
-# 6. Launch Gedit
 echo -e "${BLUE}Launching Gedit...${RESET}"
 gedit &
 
