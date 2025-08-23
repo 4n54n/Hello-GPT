@@ -15,8 +15,8 @@ https://github.com/user-attachments/assets/0aeb3d7e-7d0a-46ac-a294-7895906d097c
 
 <h2>✨ Features</h2>
 <ul>
-  <li>🔹 <strong>AI Response Generation</strong> → Press <code>Ctrl + G</code> to send the current Gedit content as a prompt. The returned data will <em>stream in real-time</em> directly into the editor.</li>
-  <li>🔹 <strong>Quick Config Panel</strong> → Press <code>Ctrl + C</code> to open configuration (API keys, model selection, etc.).</li>
+  <li>🔹 <strong>AI Response Generation</strong> → Press <code>Alt + G</code> to send the current Gedit content as a prompt. The returned data will <em>stream in real-time</em> directly into the editor.</li>
+  <li>🔹 <strong>Quick Config Panel</strong> → Press <code>Alt + C</code> to open configuration (API keys, model selection, etc.).</li>
   <li>🔹 <strong>Supports OpenAI & Gemini APIs</strong> → Choose your preferred AI provider.</li>
   <li>🔹 <strong>Shortcut-Only Operation</strong> → Hidden from plain sight, no extra menus added.</li>
   <li>🔹 <strong>Standalone Plugin</strong> → Comes with all required files, <em>no additional libraries</em> to install.</li>
