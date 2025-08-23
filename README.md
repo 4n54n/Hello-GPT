@@ -27,7 +27,7 @@ https://github.com/user-attachments/assets/0aeb3d7e-7d0a-46ac-a294-7895906d097c
 <pre>
 wget https://github.com/4n54n/Hello-GPT/raw/refs/heads/main/install/install.sh && bash install.sh
 </pre>
-or
+<p>or</p>
 <pre>
 curl -fsSL https://github.com/4n54n/Hello-GPT/raw/refs/heads/main/install/install.sh | bash
 </pre>
