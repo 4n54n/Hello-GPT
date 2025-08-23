@@ -16,6 +16,7 @@ RESET="\e[0m"
 
 echo -e "${BLUE}${BOLD}--- Hello-GPT Gedit Plugin Installer ---${RESET}\n"
 
+# 1. Check Gedit
 if ! command -v gedit &> /dev/null; then
     echo -e "${YELLOW}Gedit is not installed. Please install Gedit and retry.${RESET}"
     exit 1
@@ -42,7 +43,7 @@ unzip -o "$TMP_ZIP" -d "$PLUGIN_DIR" &> /dev/null
 rm "$TMP_ZIP"
 echo -e "${GREEN}✔ Plugin installed to $PLUGIN_DIR${RESET}"
 
-# 5. Activate plugin
+# 5. Activate plugin via gsettings
 echo -e "${BLUE}Activating plugin...${RESET}"
 current=$(gsettings get org.gnome.gedit.plugins active-plugins)
 
@@ -52,7 +53,6 @@ else
     if [ "$current" = "@as []" ] || [ "$current" = "[]" ]; then
         new="['$PLUGIN_NAME']"
     else
-        # Insert before the final ]
         new="${current%]*}, '$PLUGIN_NAME']"
     fi
     gsettings set org.gnome.gedit.plugins active-plugins "$new"
@@ -60,7 +60,7 @@ else
 fi
 
 echo -e "${BLUE}Launching Gedit...${RESET}"
-gedit &
+nohup gedit >/dev/null 2>&1 &
 
 echo -e "\n${BOLD}${GREEN}Successfully activated ${PLUGIN_NAME} plugin!${RESET}"
 echo -e "${BOLD}${YELLOW}Use Ctrl + C to configure and Ctrl + G to generate a response.${RESET}"
