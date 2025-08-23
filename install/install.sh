@@ -75,4 +75,4 @@ echo -e "${BLUE}Launching Gedit...${RESET}"
 nohup gedit >/dev/null 2>&1 &
 
 echo -e "\n${BOLD}${GREEN}Successfully activated ${PLUGIN_NAME} plugin!${RESET}"
-echo -e "${BOLD}${YELLOW}Use Ctrl + C to configure and Ctrl + G to generate a response.${RESET}"
+echo -e "${BOLD}${YELLOW}Use Alt + C to configure and Alt + G to generate a response.${RESET}"
