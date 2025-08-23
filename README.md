@@ -1,5 +1,6 @@
 <h1>Hello-GPT ( For gedit )</h1>
 
+[Screencast from 23-08-25 06_04_34 AM IST.webm](https://github.com/user-attachments/assets/0aeb3d7e-7d0a-46ac-a294-7895906d097c)
 <p>
   <strong>Hello-GPT</strong> is a <strong>Gedit plugin</strong> that integrates 
   <strong>OpenAI</strong> and <strong>Google Gemini</strong> APIs directly into your text editor. 
