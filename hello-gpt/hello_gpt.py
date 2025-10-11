@@ -24,19 +24,11 @@ for path in [OPENAI_DIR, GEMINI_DIR]:
 try:
     import openai
 except ImportError:
-    GObject.idle_add(
-    self.show_error,
-    "The openai module is not imported.\nYou might need to run fix.sh inside the install directory of the GitHub repo."
-    )
     openai = None
 
 try:
     import google.genai as genai
 except ImportError:
-    GObject.idle_add(
-    self.show_error,
-    "The google genai module is not imported.\nYou might need to run fix.sh inside the install directory of the GitHub repo."
-    )
     genai = None
 
 # -------------------------
@@ -124,7 +116,7 @@ class HelloGPTPlugin(GObject.Object, Gedit.WindowActivatable):
 
                 # Check OpenAI module import
                 if 'openai' not in globals() or openai is None:
-                    raise ImportError("OpenAI module not imported or unavailable")
+                    raise ImportError("Error connecting to the API. You may need to run 'fix.sh' inside the 'install' folder in the GitHub repository.")
 
                 # Check API key presence
                 if not api_key:
@@ -158,7 +150,7 @@ class HelloGPTPlugin(GObject.Object, Gedit.WindowActivatable):
         elif ACTIVE_PROVIDER == "gemini":
             model = GEMINI_CONFIG.get("model", "gemini-2.5-flash")
             if not self.gemini_client:
-                GObject.idle_add(self.show_error, "Gemini API not available or API key missing")
+                GObject.idle_add(self.show_error, "Error connecting to the API. You may need to run 'fix.sh' inside the 'install' folder in the GitHub repository.")
                 return
 
             try:
