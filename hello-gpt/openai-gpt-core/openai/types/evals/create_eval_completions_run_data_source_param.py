@@ -6,9 +6,11 @@ from typing import Dict, Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from ..shared_params.metadata import Metadata
+from ..shared.reasoning_effort import ReasoningEffort
 from ..responses.easy_input_message_param import EasyInputMessageParam
 from ..shared_params.response_format_text import ResponseFormatText
 from ..responses.response_input_text_param import ResponseInputTextParam
+from ..responses.response_input_audio_param import ResponseInputAudioParam
 from ..chat.chat_completion_function_tool_param import ChatCompletionFunctionToolParam
 from ..shared_params.response_format_json_object import ResponseFormatJSONObject
 from ..shared_params.response_format_json_schema import ResponseFormatJSONSchema
@@ -112,6 +114,7 @@ InputMessagesTemplateTemplateEvalItemContent: TypeAlias = Union[
     ResponseInputTextParam,
     InputMessagesTemplateTemplateEvalItemContentOutputText,
     InputMessagesTemplateTemplateEvalItemContentInputImage,
+    ResponseInputAudioParam,
     Iterable[object],
 ]
 
@@ -160,6 +163,18 @@ SamplingParamsResponseFormat: TypeAlias = Union[ResponseFormatText, ResponseForm
 class SamplingParams(TypedDict, total=False):
     max_completion_tokens: int
     """The maximum number of tokens in the generated output."""
+
+    reasoning_effort: Optional[ReasoningEffort]
+    """
+    Constrains effort on reasoning for
+    [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently
+    supported values are `minimal`, `low`, `medium`, and `high`. Reducing reasoning
+    effort can result in faster responses and fewer tokens used on reasoning in a
+    response.
+
+    Note: The `gpt-5-pro` model defaults to (and only supports) `high` reasoning
+    effort.
+    """
 
     response_format: SamplingParamsResponseFormat
     """An object specifying the format that the model must output.

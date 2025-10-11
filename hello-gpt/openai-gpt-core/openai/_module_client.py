@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from .resources.files import Files
     from .resources.images import Images
     from .resources.models import Models
+    from .resources.videos import Videos
     from .resources.batches import Batches
     from .resources.webhooks import Webhooks
     from .resources.beta.beta import Beta
@@ -19,6 +20,7 @@ if TYPE_CHECKING:
     from .resources.evals.evals import Evals
     from .resources.moderations import Moderations
     from .resources.uploads.uploads import Uploads
+    from .resources.realtime.realtime import Realtime
     from .resources.responses.responses import Responses
     from .resources.containers.containers import Containers
     from .resources.fine_tuning.fine_tuning import FineTuning
@@ -71,6 +73,12 @@ class ModelsProxy(LazyProxy["Models"]):
         return _load_client().models
 
 
+class VideosProxy(LazyProxy["Videos"]):
+    @override
+    def __load__(self) -> Videos:
+        return _load_client().videos
+
+
 class BatchesProxy(LazyProxy["Batches"]):
     @override
     def __load__(self) -> Batches:
@@ -87,6 +95,12 @@ class WebhooksProxy(LazyProxy["Webhooks"]):
     @override
     def __load__(self) -> Webhooks:
         return _load_client().webhooks
+
+
+class RealtimeProxy(LazyProxy["Realtime"]):
+    @override
+    def __load__(self) -> Realtime:
+        return _load_client().realtime
 
 
 class ResponsesProxy(LazyProxy["Responses"]):
@@ -144,9 +158,11 @@ audio: Audio = AudioProxy().__as_proxied__()
 evals: Evals = EvalsProxy().__as_proxied__()
 images: Images = ImagesProxy().__as_proxied__()
 models: Models = ModelsProxy().__as_proxied__()
+videos: Videos = VideosProxy().__as_proxied__()
 batches: Batches = BatchesProxy().__as_proxied__()
 uploads: Uploads = UploadsProxy().__as_proxied__()
 webhooks: Webhooks = WebhooksProxy().__as_proxied__()
+realtime: Realtime = RealtimeProxy().__as_proxied__()
 responses: Responses = ResponsesProxy().__as_proxied__()
 embeddings: Embeddings = EmbeddingsProxy().__as_proxied__()
 containers: Containers = ContainersProxy().__as_proxied__()

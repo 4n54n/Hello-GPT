@@ -27,7 +27,7 @@ except ImportError:
     openai = None
 
 try:
-    import genai
+    import google.genai as genai
 except ImportError:
     genai = None
 
@@ -108,13 +108,31 @@ class HelloGPTPlugin(GObject.Object, Gedit.WindowActivatable):
     # -------------------------
     def stream_to_doc(self, doc, text):
         GObject.idle_add(self.append_to_doc, doc, "\n\n\n")
-        
+
         if ACTIVE_PROVIDER == "openai":
-            api_key = OPENAI_CONFIG.get("api_key")
-            model = OPENAI_CONFIG.get("model", "gpt-4o-mini")
-            if not api_key or not openai:
-                GObject.idle_add(self.show_error, "OpenAI API not available or API key missing")
+            try:
+                api_key = OPENAI_CONFIG.get("api_key")
+                model = OPENAI_CONFIG.get("model", "gpt-4o-mini")
+
+                # Check OpenAI module import
+                if 'openai' not in globals() or openai is None:
+                    raise ImportError("OpenAI module not imported or unavailable")
+
+                # Check API key presence
+                if not api_key:
+                    raise ValueError("OpenAI API key is missing in OPENAI_CONFIG")
+
+                # Try initializing or testing key
+                openai.api_key = api_key
+                # Optional: make a simple test request to validate key (comment out if not needed)
+                # openai.models.list()
+
+            except Exception as e:
+                # Capture any error and show it in the UI
+                error_message = f"OpenAI API initialization failed: {str(e)}"
+                GObject.idle_add(self.show_error, error_message)
                 return
+
 
             openai.api_key = api_key
             try:

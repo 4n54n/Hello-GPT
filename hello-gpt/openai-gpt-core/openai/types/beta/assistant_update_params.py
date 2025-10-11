@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, Optional
+from typing import Union, Iterable, Optional
 from typing_extensions import Literal, TypedDict
 
+from ..._types import SequenceNotStr
 from .assistant_tool_param import AssistantToolParam
 from ..shared_params.metadata import Metadata
 from ..shared.reasoning_effort import ReasoningEffort
@@ -99,6 +100,9 @@ class AssistantUpdateParams(TypedDict, total=False):
     supported values are `minimal`, `low`, `medium`, and `high`. Reducing reasoning
     effort can result in faster responses and fewer tokens used on reasoning in a
     response.
+
+    Note: The `gpt-5-pro` model defaults to (and only supports) `high` reasoning
+    effort.
     """
 
     response_format: Optional[AssistantResponseFormatOptionParam]
@@ -158,7 +162,7 @@ class AssistantUpdateParams(TypedDict, total=False):
 
 
 class ToolResourcesCodeInterpreter(TypedDict, total=False):
-    file_ids: List[str]
+    file_ids: SequenceNotStr[str]
     """
     Overrides the list of
     [file](https://platform.openai.com/docs/api-reference/files) IDs made available
@@ -168,7 +172,7 @@ class ToolResourcesCodeInterpreter(TypedDict, total=False):
 
 
 class ToolResourcesFileSearch(TypedDict, total=False):
-    vector_store_ids: List[str]
+    vector_store_ids: SequenceNotStr[str]
     """
     Overrides the
     [vector store](https://platform.openai.com/docs/api-reference/vector-stores/object)

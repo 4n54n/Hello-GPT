@@ -2,15 +2,18 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, Union, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from . import web_search_tool_param
 from ..chat import ChatCompletionFunctionToolParam
+from ..._types import SequenceNotStr
 from .custom_tool_param import CustomToolParam
 from .computer_tool_param import ComputerToolParam
 from .function_tool_param import FunctionToolParam
 from .web_search_tool_param import WebSearchToolParam
 from .file_search_tool_param import FileSearchToolParam
+from .web_search_preview_tool_param import WebSearchPreviewToolParam
 
 __all__ = [
     "ToolParam",
@@ -29,6 +32,10 @@ __all__ = [
     "LocalShell",
 ]
 
+WebSearchTool = web_search_tool_param.WebSearchToolParam
+WebSearchToolFilters = web_search_tool_param.Filters
+WebSearchToolUserLocation = web_search_tool_param.UserLocation
+
 
 class McpAllowedToolsMcpToolFilter(TypedDict, total=False):
     read_only: bool
@@ -39,11 +46,11 @@ class McpAllowedToolsMcpToolFilter(TypedDict, total=False):
     it will match this filter.
     """
 
-    tool_names: List[str]
+    tool_names: SequenceNotStr[str]
     """List of allowed tool names."""
 
 
-McpAllowedTools: TypeAlias = Union[List[str], McpAllowedToolsMcpToolFilter]
+McpAllowedTools: TypeAlias = Union[SequenceNotStr[str], McpAllowedToolsMcpToolFilter]
 
 
 class McpRequireApprovalMcpToolApprovalFilterAlways(TypedDict, total=False):
@@ -55,7 +62,7 @@ class McpRequireApprovalMcpToolApprovalFilterAlways(TypedDict, total=False):
     it will match this filter.
     """
 
-    tool_names: List[str]
+    tool_names: SequenceNotStr[str]
     """List of allowed tool names."""
 
 
@@ -68,7 +75,7 @@ class McpRequireApprovalMcpToolApprovalFilterNever(TypedDict, total=False):
     it will match this filter.
     """
 
-    tool_names: List[str]
+    tool_names: SequenceNotStr[str]
     """List of allowed tool names."""
 
 
@@ -151,7 +158,7 @@ class CodeInterpreterContainerCodeInterpreterToolAuto(TypedDict, total=False):
     type: Required[Literal["auto"]]
     """Always `auto`."""
 
-    file_ids: List[str]
+    file_ids: SequenceNotStr[str]
     """An optional list of uploaded files to make available to your code."""
 
 
@@ -192,7 +199,8 @@ class ImageGeneration(TypedDict, total=False):
     """
     Control how much effort the model will exert to match the style and features,
     especially facial features, of input images. This parameter is only supported
-    for `gpt-image-1`. Supports `high` and `low`. Defaults to `low`.
+    for `gpt-image-1`. Unsupported for `gpt-image-1-mini`. Supports `high` and
+    `low`. Defaults to `low`.
     """
 
     input_image_mask: ImageGenerationInputImageMask
@@ -201,7 +209,7 @@ class ImageGeneration(TypedDict, total=False):
     Contains `image_url` (string, optional) and `file_id` (string, optional).
     """
 
-    model: Literal["gpt-image-1"]
+    model: Literal["gpt-image-1", "gpt-image-1-mini"]
     """The image generation model to use. Default: `gpt-image-1`."""
 
     moderation: Literal["auto", "low"]
@@ -243,13 +251,14 @@ class LocalShell(TypedDict, total=False):
 ToolParam: TypeAlias = Union[
     FunctionToolParam,
     FileSearchToolParam,
-    WebSearchToolParam,
     ComputerToolParam,
+    WebSearchToolParam,
     Mcp,
     CodeInterpreter,
     ImageGeneration,
     LocalShell,
     CustomToolParam,
+    WebSearchPreviewToolParam,
 ]
 
 
