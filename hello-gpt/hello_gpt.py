@@ -129,7 +129,7 @@ class HelloGPTPlugin(GObject.Object, Gedit.WindowActivatable):
 
             except Exception as e:
                 # Capture any error and show it in the UI
-                error_message = f"OpenAI API initialization failed: {str(e)}"
+                error_message = f"Error connecting to the API. You may need to run 'fix.sh' inside the 'install' folder in the GitHub repository."
                 GObject.idle_add(self.show_error, error_message)
                 return
 
