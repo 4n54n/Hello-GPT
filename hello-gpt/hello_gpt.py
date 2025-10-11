@@ -24,11 +24,19 @@ for path in [OPENAI_DIR, GEMINI_DIR]:
 try:
     import openai
 except ImportError:
+    GObject.idle_add(
+    self.show_error,
+    "The openai module is not imported.\nYou might need to run fix.sh inside the install directory of the GitHub repo."
+    )
     openai = None
 
 try:
     import google.genai as genai
 except ImportError:
+    GObject.idle_add(
+    self.show_error,
+    "The google genai module is not imported.\nYou might need to run fix.sh inside the install directory of the GitHub repo."
+    )
     genai = None
 
 # -------------------------
