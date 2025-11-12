@@ -25,9 +25,9 @@ https://github.com/user-attachments/assets/0aeb3d7e-7d0a-46ac-a294-7895906d097c
 
 <h2>🚀 Quick Installation</h2>
 <pre>
-wget https://github.com/4n54n/Hello-GPT/raw/refs/heads/main/install/install.sh && bash install.sh
+wget https://github.com/4n54n/Hello-GPT/raw/refs/heads/main/install/install-lite.sh && bash install-lite.sh
 </pre>
 <p>or</p>
 <pre>
-curl -fsSL https://github.com/4n54n/Hello-GPT/raw/refs/heads/main/install/install.sh | bash
+curl -fsSL https://github.com/4n54n/Hello-GPT/raw/refs/heads/main/install/install-lite.sh | bash
 </pre>
