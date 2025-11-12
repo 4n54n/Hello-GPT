@@ -415,9 +415,19 @@ class HelloGPTPlugin(GObject.Object, Gedit.WindowActivatable):
             if provider == "openai":
                 openai_frame.get_style_context().add_class("active-frame")
                 gemini_frame.get_style_context().remove_class("active-frame")
+
+                # Make sure both frames show text clearly
+                openai_frame.set_sensitive(True)
+                gemini_frame.set_sensitive(True)
+
             else:
                 gemini_frame.get_style_context().add_class("active-frame")
                 openai_frame.get_style_context().remove_class("active-frame")
+
+                # Make sure both frames show text clearly
+                openai_frame.set_sensitive(True)
+                gemini_frame.set_sensitive(True)
+
 
         highlight_active(ACTIVE_PROVIDER)
 
