@@ -262,12 +262,12 @@ class HelloGPTPlugin(GObject.Object, Gedit.WindowActivatable):
 
         if ACTIVE_PROVIDER == "openai":
             api_key = OPENAI_CONFIG.get("api_key")
-            model = OPENAI_CONFIG.get("model", "gpt-3.5-turbo")
+            model = OPENAI_CONFIG.get("model", "gpt-4o-mini")
             openai_chat_stream(api_key, model, text, callback)
 
         elif ACTIVE_PROVIDER == "gemini":
             api_key = GEMINI_CONFIG.get("api_key")
-            model = GEMINI_CONFIG.get("model", "gemini-2.0-flash-exp")
+            model = GEMINI_CONFIG.get("model", "gemini-2.5-flash")
             gemini_chat_stream(api_key, model, text, callback)
         else:
             GObject.idle_add(self.show_error, f"Unknown GPT provider: {ACTIVE_PROVIDER}")
@@ -341,7 +341,7 @@ class HelloGPTPlugin(GObject.Object, Gedit.WindowActivatable):
 
         openai_grid.attach(Gtk.Label(label="Model:"), 0, 0, 1, 1)
         openai_model_entry = Gtk.Entry()
-        openai_model_entry.set_text(OPENAI_CONFIG.get("model", "gpt-3.5-turbo"))
+        openai_model_entry.set_text(OPENAI_CONFIG.get("model", "gpt-4o-mini"))
         openai_model_entry.set_placeholder_text("e.g., gpt-3.5-turbo, gpt-4")
         openai_grid.attach(openai_model_entry, 1, 0, 1, 1)
 
@@ -369,9 +369,9 @@ class HelloGPTPlugin(GObject.Object, Gedit.WindowActivatable):
 
         gemini_grid.attach(Gtk.Label(label="Model:"), 0, 0, 1, 1)
         gemini_model_entry = Gtk.Entry()
-        gemini_model_entry.set_text(GEMINI_CONFIG.get("model", "gemini-2.0-flash-exp"))
-        gemini_model_entry.set_placeholder_text("e.g., gemini-2.0-flash-exp, gemini-1.5-flash")
-        openai_grid.attach(openai_api_entry, 1, 1, 1, 1)
+        gemini_model_entry.set_text(GEMINI_CONFIG.get("model", "gemini-2.5-flash"))
+        gemini_model_entry.set_placeholder_text("e.g., gemini-2.5-flash")
+        gemini_grid.attach(gemini_model_entry, 1, 0, 1, 1)
 
         gemini_grid.attach(Gtk.Label(label="API Key:"), 0, 1, 1, 1)
         gemini_api_entry = Gtk.Entry()
