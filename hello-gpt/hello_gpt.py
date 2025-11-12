@@ -116,7 +116,7 @@ class HelloGPTPlugin(GObject.Object, Gedit.WindowActivatable):
 
                 # Check OpenAI module import
                 if 'openai' not in globals() or openai is None:
-                    raise ImportError("Error connecting to the API. You may need to run 'fix.sh' inside the 'install' folder in the GitHub repository.")
+                    raise ImportError("Error connecting to the API.")
 
                 # Check API key presence
                 if not api_key:
@@ -129,7 +129,7 @@ class HelloGPTPlugin(GObject.Object, Gedit.WindowActivatable):
 
             except Exception as e:
                 # Capture any error and show it in the UI
-                error_message = f"Error connecting to the API. You may need to run 'fix.sh' inside the 'install' folder in the GitHub repository."
+                error_message = f"Error connecting to the API."
                 GObject.idle_add(self.show_error, error_message)
                 return
 
@@ -150,7 +150,7 @@ class HelloGPTPlugin(GObject.Object, Gedit.WindowActivatable):
         elif ACTIVE_PROVIDER == "gemini":
             model = GEMINI_CONFIG.get("model", "gemini-2.5-flash")
             if not self.gemini_client:
-                GObject.idle_add(self.show_error, "Error connecting to the API. You may need to run 'fix.sh' inside the 'install' folder in the GitHub repository.")
+                GObject.idle_add(self.show_error, "Error connecting to the API.")
                 return
 
             try:
